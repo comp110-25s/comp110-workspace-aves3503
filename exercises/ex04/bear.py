@@ -1,21 +1,26 @@
-<<<<<<< HEAD:exercises/ex07/bear.py
 """File to define Bear class."""
 
-class Bear:
-    
-    def __init__(self):
-        return None
-    
-    def one_day(self):
-        return None
-=======
-"""File to define Bear class."""
 
 class Bear:
-    
+    age: int
+    hunger_score: int
+
     def __init__(self):
+        self.age = 0
+        hunger_score = 0
         return None
-    
+
     def one_day(self):
         return None
->>>>>>> 4954fadf24db33d9b42242c26251f8b16233c559:exercises/ex04/bear.py
+
+
+"""File to define Bear class."""
+
+
+class Bear:
+
+    def __init__(self):
+        return None
+
+    def one_day(self):
+        return None
