@@ -24,12 +24,12 @@ class River:
         surviving_bears: list[Bear] = []
         for bear in self.bears:
             # help! how do i access age?
-            if self.age <= 5:
+            if bear.age <= 5:
                 surviving_bears.append(bear)
         self.bears = surviving_bears
         surviving_fish: list[Fish] = []
         for fish in self.fish:
-            if self.age <= 3:
+            if fish.age <= 3:
                 surviving_fish.append(fish)
         self.fish = surviving_fish
         return None
@@ -44,30 +44,41 @@ class River:
     def bears_eating(self):
         for bear in self.bears:
             if len(self.fish) >= 5:
-                remove_fish(amount=3)
-                eat(num_fish=amount)
+                self.remove_fish(amount=3)
+                bear.eat(num_fish=amount)
         return None
 
     def check_hunger(self):
         non_starving_bears: list[Bear] = []
         for bear in self.bears:
-            if self.hunger_score >= 0:
+            if bear.hunger_score >= 0:
                 non_starving_bears.append(bear)
         self.bears = non_starving_bears
         return None
 
-        return None
-
+    # better way to do this?
     def repopulate_fish(self):
+        fishpop: int = len(self.fish)
+        if fishpop % 2 == 0:
+            for fish in self.fish:
+                self.fish.append(Fish())
+                self.fish.append(Fish())
+        if fishpop % 2 == 1:
+            fishcount: int = 0
+            while fishcount < fishpop:
+                self.fish.append(Fish())
+                self.fish.append(Fish())
+                fishcount += 1
         return None
 
     def repopulate_bears(self):
+
         return None
 
     def view_river(self):
-        print(
-            f"~~~ Day {self.day}: ~~~ Fish population: {self.fish} Bear population: {self.bears}"
-        )
+        print(f"~~~ Day {self.day}: ~~~")
+        print(f"Fish population: {self.fish}")
+        print(f"Bear population: {self.bears}")
         return None
 
     def one_river_day(self):
