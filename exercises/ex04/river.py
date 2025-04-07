@@ -21,12 +21,41 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
+        surviving_bears: list[Bear] = []
+        for bear in self.bears:
+            # help! how do i access age?
+            if self.age <= 5:
+                surviving_bears.append(bear)
+        self.bears = surviving_bears
+        surviving_fish: list[Fish] = []
+        for fish in self.fish:
+            if self.age <= 3:
+                surviving_fish.append(fish)
+        self.fish = surviving_fish
+        return None
+
+    def remove_fish(self, amount: int):
+        count: int = 0
+        while count <= amount:
+            self.fish.pop(count)
+            count += 1
         return None
 
     def bears_eating(self):
+        for bear in self.bears:
+            if len(self.fish) >= 5:
+                remove_fish(amount=3)
+                eat(num_fish=amount)
         return None
 
     def check_hunger(self):
+        non_starving_bears: list[Bear] = []
+        for bear in self.bears:
+            if self.hunger_score >= 0:
+                non_starving_bears.append(bear)
+        self.bears = non_starving_bears
+        return None
+
         return None
 
     def repopulate_fish(self):
@@ -36,7 +65,9 @@ class River:
         return None
 
     def view_river(self):
-        print(f"~~~ Day {day}: ~~~ Fish population: {fish} Bear population: {bears}")
+        print(
+            f"~~~ Day {self.day}: ~~~ Fish population: {self.fish} Bear population: {self.bears}"
+        )
         return None
 
     def one_river_day(self):
@@ -61,3 +92,11 @@ class River:
         self.repopulate_bears()
         # Visualize River
         self.view_river()
+
+    def one_river_week(self):
+        daycount: int = 0
+        while daycount < 7:
+            # does this work to cycle through?
+            self.one_river_day()
+            daycount += 1
+        return None
