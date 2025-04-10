@@ -6,8 +6,8 @@ from exercises.ex04.bear import Bear
 
 class River:
     day: int
-    bears: list
-    fish: list
+    bears: list[Bear]
+    fish: list[Fish]
 
     def __init__(self, num_fish: int, num_bears: int):
         """New River with num_fish Fish and num_bears Bears"""
@@ -23,7 +23,6 @@ class River:
     def check_ages(self):
         surviving_bears: list[Bear] = []
         for bear in self.bears:
-            # help! how do i access age?
             if bear.age <= 5:
                 surviving_bears.append(bear)
         self.bears = surviving_bears
@@ -45,7 +44,7 @@ class River:
         for bear in self.bears:
             if len(self.fish) >= 5:
                 self.remove_fish(amount=3)
-                bear.eat(num_fish=amount)
+                bear.eat(num_fish=3)
         return None
 
     def check_hunger(self):
@@ -56,24 +55,14 @@ class River:
         self.bears = non_starving_bears
         return None
 
-    # better way to do this?
     def repopulate_fish(self):
-        fishpop: int = len(self.fish)
-        if fishpop % 2 == 0:
-            for fish in self.fish:
-                self.fish.append(Fish())
-                self.fish.append(Fish())
-        if fishpop % 2 == 1:
-            fishcount: int = 0
-            while fishcount < fishpop:
-                self.fish.append(Fish())
-                self.fish.append(Fish())
-                fishcount += 1
+        for _ in range(0, (len(self.fish) // 2) * 4):
+            self.fish.append(Fish())
         return None
 
     def repopulate_bears(self):
-
-        return None
+        for _ in range(0, (len(self.bears) // 2)):
+            self.bears.append(Bear())
 
     def view_river(self):
         print(f"~~~ Day {self.day}: ~~~")
@@ -107,7 +96,6 @@ class River:
     def one_river_week(self):
         daycount: int = 0
         while daycount < 7:
-            # does this work to cycle through?
             self.one_river_day()
             daycount += 1
         return None
